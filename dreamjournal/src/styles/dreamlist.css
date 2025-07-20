@@ -1,0 +1,117 @@
+/* src/styles/dreamlist.css - Updated for Fullscreen Mode */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Wrapper fills the entire screen */
+.dreamlist-wrapper-bg {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 20px;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.dreamlist-glass-box {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 35px;
+  width: 100%;
+  max-width: 1000px;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.dreamlist-main-title {
+  font-size: 30px;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.dreamlist-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.dreamlist-entry-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.dreamlist-entry-card:hover {
+  transform: translateY(-5px);
+}
+
+.dreamlist-entry-title {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.dreamlist-entry-date {
+  font-size: 14px;
+  color: #d1d1d1;
+  margin-bottom: 10px;
+}
+
+.dreamlist-entry-mood,
+.dreamlist-entry-tags,
+.dreamlist-entry-lucid {
+  font-size: 15px;
+  color: #e0e0e0;
+  margin: 6px 0;
+}
+
+.dreamlist-delete-btn {
+  margin-top: 10px;
+  background: #ff4d4d;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dreamlist-delete-btn:hover {
+  background: #ff6f6f;
+}
+
+.dreamlist-empty {
+  text-align: center;
+  color: #ccc;
+  font-size: 16px;
+  grid-column: 1 / -1;
+  margin-top: 40px;
+}

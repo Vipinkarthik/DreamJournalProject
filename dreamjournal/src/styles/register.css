@@ -1,0 +1,85 @@
+/* src/styles/register.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  overflow: hidden;
+}
+
+.register-screen-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register-glass-box {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 45px 35px;
+  width: 340px;
+  text-align: center;
+  color: #fff;
+}
+
+.register-title {
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #ffffff;
+}
+
+.register-form-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-input-field {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 10px 0;
+  color: white;
+  font-size: 15px;
+  transition: background 0.3s ease;
+  outline: none;
+}
+
+.register-input-field::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.register-input-field:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.register-submit-button {
+  background: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+}
+
+.register-submit-button:hover {
+  background: #63b3ed;
+}
+
+.register-nav-text {
+  font-size: 14px;
+  margin-top: 18px;
+}
+
+.register-nav-link {
+  color: #1e90ff;
+  cursor: pointer;
+  text-decoration: underline;
+}
