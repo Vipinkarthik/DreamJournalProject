@@ -10,7 +10,29 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (email && password) {
-      navigate('/dashboard');
+      try {
+        const response = await fetch('http://localhost:8080/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem('token', data.token);
+          navigate('/dashboard');
+        } else {
+          alert('Invalid credentials');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('Login failed');
+      }
     }
   };
 

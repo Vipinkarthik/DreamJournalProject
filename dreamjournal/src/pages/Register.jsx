@@ -10,9 +10,24 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    // Replace with actual API call
-    if (username && email && password) {
-      navigate('/login');
+
+    try {
+      const response = await fetch('http://localhost:8080/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+
+      if (response.ok) {
+        navigate('/login');
+      } else {
+        const errorData = await response.json();
+        alert(errorData.message || 'Registration failed');
+      }
+    } catch (error) {
+      alert('Error registering user');
     }
   };
 
@@ -48,7 +63,8 @@ export default function Register() {
           <button type="submit" className="register-submit-button">Sign Up</button>
         </form>
         <p className="register-nav-text">
-          Already have an account? <span onClick={() => navigate('/login')} className="register-nav-link">Login</span>
+          Already have an account?{' '}
+          <span onClick={() => navigate('/login')} className="register-nav-link">Login</span>
         </p>
       </div>
     </div>
