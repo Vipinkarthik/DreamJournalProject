@@ -4,14 +4,76 @@ import '../styles/account.css';
 
 export default function Account() {
   const [userDetails, setUserDetails] = useState({
-    name: 'Dreamer',
-    email: 'dreamer@example.com',
-    joined: '2024-09-01'
+    name: 'Loading...',
+    email: 'Loading...',
+    joined: 'Loading...'
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // You can fetch user data here if connected to backend
+    const fetchUserData = async () => {
+      try {
+        const userEmail = localStorage.getItem('userEmail');
+        const token = localStorage.getItem('token');
+
+        if (!userEmail || !token) {
+          console.error('User email or token not found');
+          setUserDetails({
+            name: 'Unknown',
+            email: 'Unknown',
+            joined: 'Unknown'
+          });
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch(`http://localhost:8080/api/auth/user/${userEmail}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUserDetails({
+            name: data.username,
+            email: data.email,
+            joined: data.joined
+          });
+        } else {
+          console.error('Failed to fetch user data');
+          setUserDetails({
+            name: 'Error loading',
+            email: 'Error loading',
+            joined: 'Error loading'
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        setUserDetails({
+          name: 'Error loading',
+          email: 'Error loading',
+          joined: 'Error loading'
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="acc-ios-fullscreen">
+        <div className="acc-ios-card">
+          <h2 className="acc-ios-heading">Loading Account Details...</h2>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="acc-ios-fullscreen">

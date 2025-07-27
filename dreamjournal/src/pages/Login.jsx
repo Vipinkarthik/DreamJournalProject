@@ -9,30 +9,28 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    if (email && password) {
-      try {
-        const response = await fetch('http://localhost:8080/api/auth/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-        });
 
-        if (response.ok) {
-          const data = await response.json();
-          localStorage.setItem('token', data.token);
-          navigate('/dashboard');
-        } else {
-          alert('Invalid credentials');
-        }
-      } catch (error) {
-        console.error('Login error:', error);
-        alert('Login failed');
+    try {
+      const response = await fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('userEmail', email); // for fetching later
+        navigate('/dashboard');
+      } else {
+        const msg = await response.text();
+        alert(`Login failed: ${msg}`);
       }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Login failed due to network error.');
     }
   };
 
@@ -41,23 +39,14 @@ export default function Login() {
       <div className="login-card">
         <h2>Dream Journal</h2>
         <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           <button type="submit">Sign In</button>
         </form>
-        <p>Don't have an account? <span onClick={() => navigate('/register')}>Register</span></p>
+        <p>
+          Don't have an account?{' '}
+          <span onClick={() => navigate('/register')}>Register</span>
+        </p>
       </div>
     </div>
   );
