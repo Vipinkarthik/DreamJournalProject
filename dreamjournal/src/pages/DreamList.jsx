@@ -16,7 +16,7 @@ export default function DreamList() {
       return;
     }
 
-    fetch(`http://localhost:8080/api/dreams/${userEmail}`, {
+    fetch(`https://dreamjournalbackend.onrender.com/api/dreams/${userEmail}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }

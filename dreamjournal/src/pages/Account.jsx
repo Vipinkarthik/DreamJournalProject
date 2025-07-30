@@ -27,7 +27,7 @@ export default function Account() {
           return;
         }
 
-        const response = await fetch(`http://localhost:8080/api/auth/user/${userEmail}`, {
+        const response = await fetch(`https://dreamjournalbackend.onrender.com/api/auth/user/${userEmail}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

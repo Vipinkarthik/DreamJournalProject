@@ -34,7 +34,7 @@ export default function DreamForm() {
     };
 
     try {
-      const response = await fetch('http://localhost:8080/api/dreams', {
+      const response = await fetch('https://dreamjournalbackend.onrender.com/api/dreams', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

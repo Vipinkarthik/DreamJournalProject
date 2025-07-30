@@ -20,7 +20,7 @@ export default function Dashboard() {
           return;
         }
 
-        const response = await fetch(`http://localhost:8080/api/dreams/stats/${userEmail}`, {
+        const response = await fetch(`https://dreamjournalbackend.onrender.com/api/dreams/stats/${userEmail}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
